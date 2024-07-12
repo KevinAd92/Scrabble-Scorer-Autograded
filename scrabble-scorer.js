@@ -17,7 +17,7 @@ function oldScrabbleScorer (word) {
     for(let i = 0; i < word.length; i++) {
         for(const pointValue in oldPointStructure) {
             if(oldPointStructure[pointValue].includes(word[i])) {
-                letterPoints += `Points for '${word[i]}': ${pointValue}\n`;
+                letterPoints += `Points for '${word[i]}': ${pointValue}\n`
             }
         }
     }
@@ -61,35 +61,33 @@ function scrabbleScorer(word) {
    word = word.toUpperCase();
    let letterPoints = "";
    for(let i = 0; i < word.length; i++) {
-       for(const pointValue in oldPointStructure) {
+       for(let pointValue in oldPointStructure) {
            if(oldPointStructure[pointValue].includes(word[i])) {
                letterPoints += `Points for '${word[i]}': ${pointValue}\n`;
            }
        }
    }
+   return word.length;
    return letterPoints;
 };
 
-const scoringAlgorithms = [
+  const scoringAlgorithms = [
     {
-        name: 'Simple Score',
-       // number: '0',
-        description: '0 - One point per character.',
-        scoringFunction: simpleScorer
-},
+      name: "Simple Score",
+      description: "Each letter is worth 1 point.",
+      scoreFunction: simpleScorer
+    },
     {
-        name: 'Vowel Bonus Score',
-       // number: '1',
-        description: '1 - Vowels are worth 3 points.',
-        scoringFunction: vowelBonusScorer
-},
+      name: "Bonus Vowels",
+      description: "Vowels are 3pts, consonants are 1 pt.",
+      scoreFunction: vowelBonusScorer
+    },
     {
-        name: 'Scrabble Score',
-       // number: '2',
-        description: '2 - Uses scrabble point system.',
-        scoringFunction: scrabbleScorer
-}
-];
+      name: "Scrabble",
+      description: "The traditional scoring algorithm.",
+      scoreFunction: scrabbleScorer
+    },
+  ];
 
 function scorerPrompt(word) {
     numberInput = input.question(`\nWhich scoring algorithm would you like to use?\n
@@ -99,11 +97,11 @@ function scorerPrompt(word) {
     \nPlease enter 0, 1, or 2: `);
   
     if (numberInput === '0') {
-      return (`Score for ${word}:\n ${scoringAlgorithms[0].scoringFunction(word)}`);
+      return (`Score for ${word}:\n ${scoringAlgorithms[0].scoreFunction(word)}`);
     } else if (numberInput === '1') {
-      return (`Score for ${word}:\n ${scoringAlgorithms[1].scoringFunction(word)}`);
+      return (`Score for ${word}:\n ${scoringAlgorithms[1].scoreFunction(word)}`);
     } else if (numberInput === '2') {
-      return  (`Score for ${word}:\n ${scoringAlgorithms[2].scoringFunction(word)}`)
+      return  (`Score for '${word}':\n ${scoringAlgorithms[2].scoreFunction(word)}`)
     } else {
       console.log('Invaild number');
       scorerPrompt();
