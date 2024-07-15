@@ -72,21 +72,19 @@ function scrabbleScorer(word) {
 };
 
   const scoringAlgorithms = [
-    {
-      name: "Simple Score",
+  {
+    name: "Simple Score",
       description: "Each letter is worth 1 point.",
-      scoreFunction: simpleScorer
-    },
-    {
-      name: "Bonus Vowels",
+      scorerFunction: simpleScorer
+  },{
+    name: "Bonus Vowels",
       description: "Vowels are 3pts, consonants are 1 pt.",
-      scoreFunction: vowelBonusScorer
-    },
-    {
-      name: "Scrabble",
-      description: "The traditional scoring algorithm.",
-      scoreFunction: scrabbleScorer
-    },
+      scorerFunction: vowelBonusScorer
+  },{
+    name: "Scrabble",
+     description: "The traditional scoring algorithm.",
+      scorerFunction: scrabbleScorer
+  }
   ];
 
 function scorerPrompt(word) {
@@ -121,10 +119,6 @@ function transform(oldPointStructure) {
 
 let newPointStructure = transform(oldPointStructure);
 
-// console.log('letter p: ', newPointStructure.p);
-// console.log('letter j: ', newPointStructure.j);
-// console.log('the word is pineapple: ', oldScrabbleScorer('pineapple'));
-// console.log('Pineapple oldScrabbleScorer ' + (sum = 3+1+1+1+1+3+3+1+1+1));
 function runProgram() {
     transform(oldPointStructure);
     let prompt = initialPrompt();
