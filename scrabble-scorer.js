@@ -117,7 +117,7 @@ function transform(oldPointStructure) {
   return newPtObject;
 };
 
-let newPointStructure = transform(oldPointStructure);
+//let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
     transform(oldPointStructure);
